@@ -26,6 +26,11 @@ export class AppComponent {
       "Mac N Cheese",
       ["Mac", "Cheese"],
       "Add Cheese to Mac. Heat and Serve."
+    ),
+    new Recipe(
+      "Pizza",
+      ["Crust", "Cheese", "Sauce"],
+      "Add sauce and cheese to crust. Bake and eat."
     )
   ]
 }
