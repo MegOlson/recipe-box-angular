@@ -5,19 +5,25 @@ import { Component } from '@angular/core';
   template: `
     <div class="container">
       <h1>Recipe Box</h1>
-      <h3 id="header">Add to Recipes:</h3>
-      <form class="form-group">
-        <label for="newTitle">Title:</label>
-        <input type="text" [(ngModel)]="newTitle" name="newTitle" class="form-control">
-        <label for="newIngredients">Ingredients:</label>
-        <input type="text" [(ngModel)]="newIngredients" name="newIngredients" class="form-control">
-        <label for="newInstructions">Instructions:</label>
-        <input type="text" [(ngModel)]="newInstructions" name="newInstructions" class="form-control">
-        <button type="button" class="btn" (click)="addRecipe()" id="addRecipe">Add Recipe</button>
-      </form>
+      <div class="panel panel-default add-form">
+        <div class="panel-heading">
+          <h3 id="header">Add to Recipes:</h3>
+        </div>
+        <div class="panel-body">
+          <form class="form-group">
+            <label for="newTitle">Title:</label>
+            <input type="text" [(ngModel)]="newTitle" name="newTitle" class="form-control">
+            <label for="newIngredients">Ingredients:</label>
+            <input type="text" [(ngModel)]="newIngredients" name="newIngredients" class="form-control">
+            <label for="newInstructions">Instructions:</label>
+            <input type="text" [(ngModel)]="newInstructions" name="newInstructions" class="form-control">
+            <button type="button" class="btn" (click)="addRecipe()" id="addRecipe">Add Recipe</button>
+          </form>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-6">
-          <div class="column-liner">
+          <div class="column1">
             <h2>Recipes:</h2>
             <ul>
               <li *ngFor="let currentRecipe of recipes">
@@ -27,21 +33,25 @@ import { Component } from '@angular/core';
           </div>
         </div>
         <div class="col-md-6">
-          <div class="column-liner">
-            <div *ngIf="selectedRecipe">
-              <h3>{{selectedRecipe.title}} <button type="button" class="btn" (click)="edit(selectedRecipe)">Edit Title</button></h3>
-              <h3>Ingredients:</h3>
-              <ul>
-                <li *ngFor="let currentIngredient of selectedRecipe.ingredients">{{currentIngredient}}</li>
-              </ul>
-              <h3>Instructions:</h3>
-              <p>{{selectedRecipe.instructions}}</p>
-            </div>
-            <div *ngIf="editRecipe">
-              <form>
-                <input [(ngModel)]="editRecipe.title" type="text" name="title">
-                <button type="button" class="btn" (click)="doneEditing()">Done Editing</button>
-              </form>
+          <div class="column2">
+            <div *ngIf="selectedRecipe" class="panel panel-default">
+              <div class="panel-heading">
+                <h3>{{selectedRecipe.title}} <button type="button" class="btn edit" (click)="edit(selectedRecipe)">Edit Title</button></h3>
+                <div *ngIf="editRecipe">
+                  <form class="form-group">
+                    <input [(ngModel)]="editRecipe.title" type="text" name="title" class="form-control">
+                    <button type="button" class="btn edit" (click)="doneEditing()" >Done Editing</button>
+                  </form>
+                </div>
+              </div>
+              <div class="panel-body">
+                <h3>Ingredients:</h3>
+                <ul>
+                  <li *ngFor="let currentIngredient of selectedRecipe.ingredients">{{currentIngredient}}</li>
+                </ul>
+                <h3>Instructions:</h3>
+                <p>{{selectedRecipe.instructions}}</p>
+              </div>
             </div>
           </div>
         </div>
