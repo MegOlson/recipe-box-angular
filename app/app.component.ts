@@ -7,20 +7,23 @@ import { Component } from '@angular/core';
       <h1>Recipe Box</h1>
       <ul>
         <li *ngFor="let currentRecipe of recipes">
-          <h2>{{currentRecipe.title}}</h2>
-          <h3>Ingredients</h3>
-          <ul>
-            <li *ngFor="let currentIngredient of currentRecipe.ingredients">{{currentIngredient}}</li>
-          </ul>
-          <h3>Instructions</h3>
-          <p>{{currentRecipe.instructions}}</p>
+          <h2 (click)="showDetails(currentRecipe)">{{currentRecipe.title}}</h2>
         </li>
      </ul>
+     <div *ngIf="selectedRecipe">
+       <h3>Ingredients:</h3>
+       <ul>
+         <li *ngFor="let currentIngredient of selectedRecipe.ingredients">{{currentIngredient}}</li>
+       </ul>
+       <h3>Instructions:</h3>
+       <p>{{selectedRecipe.instructions}}</p>
+     </div>
     </div>
   `
 })
 
 export class AppComponent {
+  selectedRecipe: Recipe;
   recipes: Recipe[] = [
     new Recipe(
       "Mac N Cheese",
@@ -33,6 +36,9 @@ export class AppComponent {
       "Add sauce and cheese to crust. Bake and eat."
     )
   ]
+  showDetails(clickedRecipe: Recipe) {
+    this.selectedRecipe = clickedRecipe;
+  }
 }
 
 export class Recipe {
