@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
         </li>
      </ul>
      <div *ngIf="selectedRecipe">
+     <button type="button" class="btn" (click)="edit(selectedRecipe)">Edit Title</button>
        <h3>Ingredients:</h3>
        <ul>
          <li *ngFor="let currentIngredient of selectedRecipe.ingredients">{{currentIngredient}}</li>
@@ -18,12 +19,19 @@ import { Component } from '@angular/core';
        <h3>Instructions:</h3>
        <p>{{selectedRecipe.instructions}}</p>
      </div>
+     <div *ngIf="editRecipe">
+      <form>
+        <input [(ngModel)]="editRecipe.title" type="text" name="title">
+        <button type="button" class="btn" (click)="doneEditing()">Done Editing</button>
+      </form>
+     </div>
     </div>
   `
 })
 
 export class AppComponent {
   selectedRecipe: Recipe;
+  editRecipe: Recipe;
   recipes: Recipe[] = [
     new Recipe(
       "Mac N Cheese",
@@ -42,6 +50,12 @@ export class AppComponent {
     } else {
       this.selectedRecipe = clickedRecipe;
     }
+  }
+  edit(recipe: Recipe) {
+    this.editRecipe = recipe;
+  }
+  doneEditing() {
+    this.editRecipe = null;
   }
 }
 
