@@ -37,7 +37,11 @@ export class AppComponent {
     )
   ]
   showDetails(clickedRecipe: Recipe) {
-    this.selectedRecipe = clickedRecipe;
+    if (this.selectedRecipe === clickedRecipe){
+      this.selectedRecipe = null;
+    } else {
+      this.selectedRecipe = clickedRecipe;
+    }
   }
 }
 
