@@ -1,0 +1,23 @@
+h1 {
+  text-align: center;
+}
+
+#header {
+  text-align: center;
+}
+
+#addRecipe {
+  margin-top: 5px;
+}
+
+form {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.column-liner {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
